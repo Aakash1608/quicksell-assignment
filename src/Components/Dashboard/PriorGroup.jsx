@@ -32,7 +32,7 @@ const PriorGroup = ({ ticketData, userData }) => {
     }
     useEffect(() => {
         setState();
-    }, [])
+    }, [ticketData])
   return (
     <div className='statusg-main'>
         <div className="statusg-body">

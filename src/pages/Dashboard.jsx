@@ -32,7 +32,7 @@ const Dashboard = () => {
             let data = tData;
             if(data.length > 0){
                 data?.sort((a, b) => b.priority-a.priority);
-                console.log(data);
+                // console.log(data);
                 
                 setTicketData([...data])
             }
