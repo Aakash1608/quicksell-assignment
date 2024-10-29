@@ -8,6 +8,7 @@ import Add_icon from '../../assets/add.svg'
 import Three_dot_icon from '../../assets/3 dot menu.svg'
 import './statusg.css'
 import Cards from '../Cards'
+import UserCard from '../UserCard'
 import Avatar from '../Avatar'
 
 const UserGroup = ({ ticketData, userData }) => {
@@ -53,7 +54,7 @@ const UserGroup = ({ ticketData, userData }) => {
                 data?.map((e) => {
                     let user = userData.find((u) => u.id == e.userId);
                     return (
-                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user} />
+                        <UserCard id={e.id} title={e.title} tags={e.tag[0]} user={user} priority={e.priority} status={e.status} />
                     )
                 })
             }

@@ -8,6 +8,7 @@ import './statusg.css'
 import Add_icon from '../../assets/add.svg'
 import Three_dot_icon from '../../assets/3 dot menu.svg'
 import Cards from '../Cards'
+import PriorCards from '../PriorCards'
 import Avatar from '../Avatar'
 
 const PriorGroup = ({ ticketData, userData }) => {
@@ -50,7 +51,7 @@ const PriorGroup = ({ ticketData, userData }) => {
                 backlog?.map((e) => {
                     let user = userData.find((u) => u.id == e.userId);
                     return (
-                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user} />
+                        <PriorCards id={e.id} title={e.title} tags={e.tag[0]} user={user}  priority={e.priority} status={e.status}/>
                     )
                 })
             }
@@ -71,7 +72,7 @@ const PriorGroup = ({ ticketData, userData }) => {
                 todo?.map((e) => {
                     let user = userData.find((u) => u.id == e.userId);
                     return (
-                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user} />
+                        <PriorCards id={e.id} title={e.title} tags={e.tag[0]} user={user}  priority={e.priority} status={e.status}/>
                     )
                 })
             }
@@ -92,7 +93,7 @@ const PriorGroup = ({ ticketData, userData }) => {
                 inProgress?.map((e) => {
                     let user = userData.find((u) => u.id == e.userId);
                     return (
-                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user} />
+                        <PriorCards id={e.id} title={e.title} tags={e.tag[0]} user={user}  priority={e.priority} status={e.status}/>
                     )
                 })
             }
@@ -113,7 +114,7 @@ const PriorGroup = ({ ticketData, userData }) => {
                 done?.map((e) => {
                     let user = userData.find((u) => u.id == e.userId);
                     return (
-                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user} />
+                        <PriorCards id={e.id} title={e.title} tags={e.tag[0]} user={user}  priority={e.priority} status={e.status}/>
                     )
                 })
             }
@@ -134,7 +135,8 @@ const PriorGroup = ({ ticketData, userData }) => {
                 cancelled?.map((e) => {
                     let user = userData.find((u) => u.id == e.userId);
                     return (
-                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user} />
+
+                        <PriorCards id={e.id} title={e.title} tags={e.tag[0]} user={user}  priority={e.priority} status={e.status}/>
                     )
                 })
             }

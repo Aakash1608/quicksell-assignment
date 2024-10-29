@@ -49,7 +49,7 @@ const StatusGroup = ({ ticketData, userData }) => {
                 backlog?.map((e) => {
                     let user = userData.find((u) => u.id == e.userId);
                     return (
-                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user} />
+                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user} priority={e.priority} />
                     )
                 })
             }
@@ -70,7 +70,7 @@ const StatusGroup = ({ ticketData, userData }) => {
                 todo?.map((e) => {
                     let user = userData.find((u) => u.id == e.userId);
                     return (
-                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user} />
+                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user}  priority={e.priority}/>
                     )
                 })
             }
@@ -91,7 +91,7 @@ const StatusGroup = ({ ticketData, userData }) => {
                 inProgress?.map((e) => {
                     let user = userData.find((u) => u.id == e.userId);
                     return (
-                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user} />
+                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user}  priority={e.priority}/>
                     )
                 })
             }
@@ -112,7 +112,7 @@ const StatusGroup = ({ ticketData, userData }) => {
                 done?.map((e) => {
                     let user = userData.find((u) => u.id == e.userId);
                     return (
-                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user} />
+                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user}  priority={e.priority}/>
                     )
                 })
             }
@@ -133,7 +133,7 @@ const StatusGroup = ({ ticketData, userData }) => {
                 cancelled?.map((e) => {
                     let user = userData.find((u) => u.id == e.userId);
                     return (
-                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user} />
+                        <Cards id={e.id} title={e.title} tags={e.tag[0]} user={user}  priority={e.priority}/>
                     )
                 })
             }
