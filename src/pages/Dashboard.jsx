@@ -20,6 +20,7 @@ const Dashboard = () => {
             setUserData(data.users || [])
             console.log((data["users"]));
             console.log(data["tickets"])
+            changeOrder()
 
         } catch (error) {
             console.log(error)
@@ -29,14 +30,18 @@ const Dashboard = () => {
         if(ordering == "Priority"){
             let data = ticketData;
             data?.sort((a, b) => b.priority-a.priority);
-            setTicketData(data)
+            console.log(data);
+            
+            setTicketData(prevT => [...prevT ,...data])
         }
         if(ordering == "Title"){
             let data = ticketData
             data?.sort((a, b) => {
                 return a.title.localeCompare(b.title)
             })
-            setTicketData(data)
+            // console.log(data);
+            
+            setTicketData(prevT => [...prevT ,...data])
         }
     }
     useEffect(()=>{
@@ -51,7 +56,7 @@ const Dashboard = () => {
     }, [])
     useEffect(() => {
         changeOrder()
-    }, [ordering])
+    }, [ordering, setOrdering])
   return (
     <div className='dash-main'>
         {ticketData.length > 0 ? (
