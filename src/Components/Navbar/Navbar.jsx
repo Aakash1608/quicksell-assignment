@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import './navbar.css'
 import Down_icon from '../../assets/down.svg'
 import Display_icon from '../../assets/Display.svg'
-
-const Navbar = () => {
+import { saveToLocal, getFromLocal } from '../../utils'
+const Navbar = ({ grouping, setGrouping, ordering, setOrdering }) => {
     const [show, setShow] = useState(false);
     const [showGrouping, setShowGrouping] = useState(false);
     const [showOrdering, setShowOrdering] = useState(false);
@@ -27,14 +27,26 @@ const Navbar = () => {
                         setShowGrouping(!showGrouping)
                         setShowOrdering(false)
                     }}>
-                        <p>Status</p>
+                        <p>{grouping}</p>
                         <img src={Down_icon} alt="" />
                     </span>
                 </div>
                 <div className={!showGrouping ? "sub-nav-group hidden" : "sub-nav-group"}>
-                    <span>Status</span>
-                    <span>User</span>
-                    <span>Priority</span>
+                    <span onClick={() => {
+                        setGrouping("Status")
+                        setShowGrouping(false)
+                        saveToLocal("Status", ordering)
+                    }}>Status</span>
+                    <span onClick={() => {
+                        setGrouping("User")
+                        setShowGrouping(false)
+                        saveToLocal("User", ordering)
+                    }}>User</span>
+                    <span onClick={() => {
+                        setGrouping("Priority")
+                        setShowGrouping(false)
+                        saveToLocal("Priority", ordering)
+                    }}>Priority</span>
                 </div>
             </div>
             <div className='nav-hid-wrapper'>
@@ -44,14 +56,22 @@ const Navbar = () => {
                         setShowOrdering(!showOrdering)
                         setShowGrouping(false)
                     }}>
-                        <p>Priority</p>
+                        <p>{ordering}</p>
                         <img src={Down_icon} alt="" />
                     </span>
 
                 </div>
                 <div className={!showOrdering ? "sub-nav-group hidden" : "sub-nav-group"}>
-                    <span>Priority</span>
-                    <span>Title</span>
+                    <span onClick={() => {
+                        setOrdering("Priority")
+                        setShowOrdering(false)
+                        saveToLocal(grouping, "Priority")
+                    }}>Priority</span>
+                    <span onClick={() => {
+                        setOrdering("Title")
+                        setShowOrdering(false)
+                        saveToLocal(grouping, "Title")
+                    }}>Title</span>
                 </div>
             </div>
         </span>
