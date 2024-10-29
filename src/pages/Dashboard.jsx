@@ -16,36 +16,42 @@ const Dashboard = () => {
         try {
             const res = await fetch('https://api.quicksell.co/v1/internal/frontend-assignment');
             const data = await res.json()
-            setTicketData(data["tickets"] || [])
+            // setTicketData(data["tickets"] || [])
             setUserData(data.users || [])
             console.log((data["users"]));
             console.log(data["tickets"])
-            changeOrder()
+            changeOrder(data["tickets"])
 
         } catch (error) {
             console.log(error)
         }
     }
-    const changeOrder = () => {
-        if(ordering == "Priority"){
-            let data = ticketData;
-            data?.sort((a, b) => b.priority-a.priority);
-            console.log(data);
-            
-            setTicketData(prevT => [...prevT ,...data])
+    const changeOrder = (tData) => {
+        let {group, order} = getFromLocal();
+        if(order == "Priority"){
+            let data = tData;
+            if(data.length > 0){
+                data?.sort((a, b) => b.priority-a.priority);
+                console.log(data);
+                
+                setTicketData([...data])
+            }
+
         }
-        if(ordering == "Title"){
-            let data = ticketData
-            data?.sort((a, b) => {
-                return a.title.localeCompare(b.title)
-            })
-            // console.log(data);
-            
-            setTicketData(prevT => [...prevT ,...data])
+        if(order == "Title"){
+            let data = tData
+            if(data.length > 0) {
+                data?.sort((a, b) => {
+                    return a.title.localeCompare(b.title)
+                })
+                // console.log(data);
+                
+                setTicketData([...data])
+            }
+
         }
     }
     useEffect(()=>{
-        fetchAPI();
         let {group, order} = getFromLocal();
         if(group) {
             setGrouping(group)
@@ -53,9 +59,11 @@ const Dashboard = () => {
         if(order) {
             setOrdering(order)
         }
+        fetchAPI();
+        
     }, [])
     useEffect(() => {
-        changeOrder()
+        changeOrder(ticketData)
     }, [ordering, setOrdering])
   return (
     <div className='dash-main'>
